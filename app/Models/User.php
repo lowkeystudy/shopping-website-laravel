@@ -10,7 +10,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+<<<<<<< Updated upstream
 #[Fillable(['name', 'email', 'password','password_changed_at'])]
+=======
+#[Fillable(['name', 'email', 'password', 'role', 'is_active', 'password_changed_at'])]
+>>>>>>> Stashed changes
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -26,7 +30,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
+<<<<<<< Updated upstream
 'password_changed_at' => 'datetime',
+=======
+            'password_changed_at' => 'datetime',
+>>>>>>> Stashed changes
             'password' => 'hashed',
         ];
     }

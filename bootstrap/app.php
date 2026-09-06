@@ -1,11 +1,18 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Configuration\Exceptions;
-use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\EnforceAccountStanding;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\CheckPasswordExpiry;
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+<<<<<<< Updated upstream
+use App\Http\Middleware\RoleMiddleware;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CheckPasswordExpiry;
+=======
+>>>>>>> Stashed changes
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,6 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->web(append: [
+            EnforceAccountStanding::class,
+        ]);
+
         $middleware->alias([
             'role' => RoleMiddleware::class,
             'admin' => AdminMiddleware::class,

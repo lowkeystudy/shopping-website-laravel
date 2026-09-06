@@ -27,7 +27,17 @@ Route::get('/checkout', [OrderController::class, 'checkout'])->name('order.check
 Route::post('/checkout', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order-success/{id}', [OrderController::class, 'success'])->name('order.success');
 
+<<<<<<< Updated upstream
 // Route trang "Mật khẩu hết hạn"
+=======
+// route cho trang "Mật khẩu hết hạn"
+Route::middleware('auth')->group(function () {
+    Route::get('/password-expired', [PasswordExpiredController::class, 'show'])->name('password.expired');
+    Route::put('/password-expired', [PasswordExpiredController::class, 'update'])->name('password.expired.update');
+});
+
+// 2. DASHBOARD ĐIỀU HƯỚNG THEO ROLE & PROFILE CÁ NHÂN
+>>>>>>> Stashed changes
 Route::middleware('auth')->group(function () {
     Route::get('/password-expired', [PasswordExpiredController::class, 'show'])->name('password.expired');
     Route::put('/password-expired', [PasswordExpiredController::class, 'update'])->name('password.expired.update');
