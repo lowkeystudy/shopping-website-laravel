@@ -94,6 +94,17 @@ class UserController extends Controller
         $user->save();
 
         $statusText = $user->is_active ? 'Mở khóa' : 'Khóa';
+
+        // A09 - Ghi log việc khóa/mở khóa tài khoản
+        LoginLog::create([
+            'user_id'      => $user->id,
+            'email'        => $user->email,
+            'ip_address'   => request()->ip(),
+            'user_agent'   => request()->userAgent(),
+            'status'       => $user->is_active ? 'account_activated' : 'account_deactivated',
+            'logged_in_at' => now(),
+        ]);
+
         return back()->with('success', "Đã {$statusText} tài khoản thành công!");
     }
 
